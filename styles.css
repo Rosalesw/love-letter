@@ -1,0 +1,316 @@
+/* Cuerpo */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #fae1dd;
+  font-family: 'DM Serif Text', sans-serif;
+  margin: 0;
+  text-align: center;
+}
+
+/* Contenedor general */
+.contenedor {
+  position: relative;
+}
+
+/* Carta base en forma de corazón */
+.carta-base {
+  position: relative;
+  width: 240px;
+  height: 220px;
+  transform: rotate(-45deg);
+}
+
+/* Imagen sorpresa oculta por defecto */
+#imagenSorpresa {
+  width: 120px;
+  border-radius: 10px;
+  margin-top: 10px;
+  display: none;
+  z-index: 2;
+}
+
+/* Clase para mostrar mensaje */
+.mostrar-mensaje {
+  opacity: 1;
+}
+
+/* Espaciado del subtítulo */
+.psorpresa {
+  margin-bottom: 100px;
+}
+
+/* Parte inferior (base) de la carta */
+.carta {
+  background: #f4978e;
+  z-index: 1;
+}
+
+/* Parte superior que se abre */
+.superior {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 220px;
+  background: #f4978e;
+  transform-origin: bottom center;
+  transition: transform 0.75s ease-in-out;
+  z-index: 3;
+}
+
+.superior::before,
+.superior::after {
+  content: "";
+  position: absolute;
+  width: 240px;
+  height: 220px;
+  background: #f4978e;
+  border-radius: 50%;
+}
+
+.superior::before {
+  top: -120px;
+  left: 0;
+}
+
+.superior::after {
+  top: 0;
+  left: 120px;
+}
+
+/* Animación para abrir */
+.abrir-superior {
+  transform: rotateX(180deg);
+}
+
+/* Parte del mensaje con forma de corazón */
+.mensaje-corazon {
+  position: relative;
+  width: 240px;
+  height: 220px;
+  background: #eae2b7;
+}
+
+.mensaje-corazon::before,
+.mensaje-corazon::after {
+  content: "";
+  position: absolute;
+  width: 240px;
+  height: 220px;
+  background: #eae2b7;
+  border-radius: 50%;
+}
+
+.mensaje-corazon::before {
+  top: -120px;
+  left: 0;
+}
+
+.mensaje-corazon::after {
+  top: 0;
+  left: 120px;
+}
+
+.mensaje-corazon .contenido {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 220px;
+  transform: rotate(45deg); /* Revertir rotación para el texto */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+}
+
+.mensaje-corazon p {
+  font-size: 14px;
+  font-family: cursive;
+  color: #333;
+}
+
+/* Botones */
+.botones {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.boton {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #ff66b2, #ff4081);
+  background-size: 200% 200%;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.boton:hover {
+  background-position: 100% 100%;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+.corazon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ff69b4;
+  transform: rotate(45deg);
+  animation: flotar 4s ease-in-out infinite;
+  opacity: 0.7;
+  z-index: 0;
+}
+
+.corazon::before,
+.corazon::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ff69b4;
+  border-radius: 50%;
+}
+
+.corazon::before {
+  top: -10px;
+  left: 0;
+}
+
+.corazon::after {
+  left: -10px;
+  top: 0;
+}
+
+/* Animación de flotación suave */
+@keyframes flotar {
+  0%, 100% {
+    transform: rotate(45deg) translateY(0);
+  }
+  50% {
+    transform: rotate(45deg) translateY(-15px);
+  }
+}
+.flotante-img {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  animation: flotar-img 6s ease-in-out infinite;
+  opacity: 0.85;
+  z-index: 0;
+}
+
+/* Animación flotante suave */
+@keyframes flotar-img {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+.flotante-img-cerca {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+  animation: flotar-img-cerca 4s ease-in-out infinite;
+  opacity: 0.9;
+  z-index: 1;
+}
+
+@keyframes flotar-img-cerca {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.corazon.cerca {
+  width: 16px;
+  height: 16px;
+  background-color: #ff4d6d;
+  animation: flotar-cerca 3s ease-in-out infinite;
+  z-index: 0;
+}
+
+.corazon.cerca::before,
+.corazon.cerca::after {
+  width: 16px;
+  height: 16px;
+  background-color: #ff4d6d;
+}
+
+@keyframes flotar-cerca {
+  0%, 100% {
+    transform: rotate(45deg) translateY(0);
+  }
+  50% {
+    transform: rotate(45deg) translateY(-6px);
+  }
+}
+.corazon.encima {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: #ff6b81;
+  transform: rotate(45deg);
+  animation: flotar-encima 3s ease-in-out infinite;
+  opacity: 0.9;
+  z-index: 5; /* Muy por encima */
+}
+
+.corazon.encima::before,
+.corazon.encima::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: #ff6b81;
+  border-radius: 50%;
+}
+
+.corazon.encima::before {
+  top: -10px;
+  left: 0;
+}
+
+.corazon.encima::after {
+  left: -10px;
+  top: 0;
+}
+
+@keyframes flotar-encima {
+  0%, 100% {
+    transform: rotate(45deg) translateY(0);
+  }
+  50% {
+    transform: rotate(45deg) translateY(-8px);
+  }
+}
+
+@keyframes latido {
+  0%, 100% {
+    transform: rotate(-45deg) scale(1);
+  }
+  50% {
+    transform: rotate(-45deg) scale(1.05);
+  }
+}
+
+.carta-base.latido {
+  animation: latido 1.5s infinite ease-in-out;
+}
